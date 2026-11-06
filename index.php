@@ -56,6 +56,17 @@ function obtenerIdDeUrl()
     return (int) $_GET['id'];
 }
 
+// Las acciones que cambian datos o cierran sesión solo se aceptan por POST
+// (el router ya valida el token CSRF en todos los POST).
+function exigirPost()
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        header('Allow: POST');
+        die('Método no permitido: esta acción solo acepta POST.');
+    }
+}
+
 switch ($accion) {
 
     case 'login':
@@ -112,6 +123,8 @@ switch ($accion) {
 
     case 'logout':
 
+        exigirPost();
+
         $authController->cerrarSesion();
 
         header('Location: index.php?accion=login');
@@ -120,6 +133,8 @@ switch ($accion) {
         break;
 
     case 'actualizarTema':
+
+        exigirPost();
 
         $authController->actualizarTema($usuarioId, $_POST['tema'] ?? '');
 
@@ -150,6 +165,8 @@ switch ($accion) {
         break;
 
     case 'completarTarea':
+
+        exigirPost();
 
         $id = obtenerIdDeUrl();
 
@@ -195,17 +212,20 @@ switch ($accion) {
     break;
 
 
-    case 'eliminarActividad':
+        case 'eliminarActividad':
 
-    $id = $_GET['id'];
+        exigirPost();
 
-    $actividadController->eliminar($id, $usuarioId);
+        $id = obtenerIdDeUrl();
 
-    header('Location: index.php?accion=actividades');
-    exit;
+        if ($id !== null) {
+            $actividadController->eliminar($id, $usuarioId);
+        }
 
-    break;
+        header('Location: index.php?accion=actividades');
+        exit;
 
+        break;
     case 'editarActividad':
 
     $id = $_GET['id'];
@@ -349,16 +369,20 @@ switch ($accion) {
 
     break;
 
-    case 'eliminarTarea':
+       case 'eliminarTarea':
 
-    $id = $_GET['id'];
+        exigirPost();
 
-    $tareaController->eliminar($id, $usuarioId);
+        $id = obtenerIdDeUrl();
 
-    header('Location: index.php?accion=tareas');
-    exit;
+        if ($id !== null) {
+            $tareaController->eliminar($id, $usuarioId);
+        }
 
-    break;
+        header('Location: index.php?accion=tareas');
+        exit;
+
+        break;
 
     case 'actualizarTarea':
 
