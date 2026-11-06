@@ -60,8 +60,6 @@ GestordeTareas/
 │   ├── Actividad.php
 │   ├── Tarea.php
 │   └── Usuario.php
-├── scripts/
-
 ├── views/
 │   ├── actividades/
 │   │   ├── crear.php
@@ -79,6 +77,7 @@ GestordeTareas/
 │       ├── crear.php
 │       ├── editar.php
 │       └── index.php
+├── LICENSE
 └── README.md
 ```
 
