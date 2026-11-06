@@ -116,13 +116,19 @@ $temasDisponibles = [
 
                 <li class="nav-item">
 
-                    <a class="nav-link" href="index.php?accion=logout"
-                    onclick="return confirm('¿Seguro que quieres cerrar sesión?')">
+                    <form action="index.php?accion=logout" method="POST" class="d-inline"
+      onsubmit="return confirm('¿Seguro que quieres cerrar sesión?')">
 
-                        <i class="bi bi-box-arrow-right"></i>
-                        <?= htmlspecialchars($_SESSION['nombre_usuario'] ?? '') ?> · Salir
+    <?= Csrf::campoOculto() ?>
 
-                    </a>
+    <button type="submit" class="nav-link btn btn-link">
+
+        <i class="bi bi-box-arrow-right"></i>
+        <?= htmlspecialchars($_SESSION['nombre_usuario'] ?? '') ?> · Salir
+
+    </button>
+
+</form>
 
                 </li>
 

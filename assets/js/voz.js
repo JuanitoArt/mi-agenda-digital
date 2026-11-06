@@ -416,7 +416,7 @@
 
         if (texto.includes('cerrar sesión') || texto.includes('cerrar sesion') || texto.includes('salir de la cuenta') || texto === 'salir') {
             hablar('Cerrando sesión');
-            location.href = 'index.php?accion=logout';
+            enviarFormularioSimple('logout');
             return;
         }
 
@@ -751,7 +751,9 @@
     function enviarFormularioSimple(accion, id) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = `index.php?accion=${accion}&id=${id}`;
+         form.action = id !== undefined
+            ? `index.php?accion=${accion}&id=${id}`
+            : `index.php?accion=${accion}`;
         agregarCampoCSRF(form);
         document.body.appendChild(form);
         form.submit();
@@ -1012,7 +1014,7 @@
         localStorage.removeItem(CLAVE_ACTIVADO);
         sessionStorage.removeItem(CLAVE_SESION_COMANDO);
 
-        escuchandoComando = false;
+        escuchandoComando = false; 
         modoCreacion = null;
         modoConfirmacion = null;
 
@@ -1030,7 +1032,7 @@
         btnDesactivar.addEventListener('click', desactivarAsistente);
     }
 
-    // Si en una página anterior ya se activó el asistente, lo reactivamos
+    // Si en una página anterior ya se activó el asistente, se reactiva
     // automáticamente aquí (sin pedir clic de nuevo).
     if (localStorage.getItem(CLAVE_ACTIVADO) === '1') {
         if (btnActivar) btnActivar.style.display = 'none';
