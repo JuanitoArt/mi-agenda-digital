@@ -1,0 +1,13 @@
+# Git normaliza los saltos de línea al guardar en el repo,
+# sin importar si se edita en Windows (CRLF) o en otro sistema (LF)
+* text=auto
+
+# Archivos binarios: no tocarlos
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary

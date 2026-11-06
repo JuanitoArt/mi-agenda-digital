@@ -1,0 +1,22 @@
+# Editor
+.vscode/
+.idea/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Exports y respaldos de base de datos (pueden traer correos y hashes)
+# Solo se versiona el esquema, sin datos
+*.sql
+!database/schema.sql
+
+# Respaldos, logs y comprimidos
+*.bak
+*.log
+*.zip
+*.rar
+
+# Variables de entorno
+.env

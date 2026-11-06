@@ -226,6 +226,7 @@ switch ($accion) {
         exit;
 
         break;
+        
     case 'editarActividad':
 
     $id = $_GET['id'];
