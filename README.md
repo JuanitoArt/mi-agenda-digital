@@ -46,22 +46,22 @@ GestordeTareas/
 │   └── js/
 │       └── voz.js                   # Lógica del asistente de voz
 ├── config/
+│   ├── Csrf.php                     # Tokens CSRF
 │   ├── Database.php                 # Conexión PDO (singleton) a MySQL
-│   ├── JsonManager.php              # Utilidad para leer/guardar JSON (legado)
+│   ├── database.example.php         # Plantilla de credenciales
 │   └── zonahoraria.php              # date_default_timezone_set('America/Bogota')
 ├── controllers/
 │   ├── ActividadController.php      # CRUD de actividades
 │   ├── AuthController.php           # Registro, login, logout
 │   └── TareaController.php          # CRUD de tareas
 ├── database/
-│   ├── actividades.json             # Datos legados (formato anterior a MySQL)
-│   └── tareas.json                  # Datos legados (formato anterior a MySQL)
+│   └── schema.sql                   # Esquema de la base de datos
 ├── models/
 │   ├── Actividad.php
 │   ├── Tarea.php
 │   └── Usuario.php
 ├── scripts/
-│   └── migrar_json_a_mysql.php      # Migración única de JSON legado -> MySQL
+
 ├── views/
 │   ├── actividades/
 │   │   ├── crear.php
@@ -112,21 +112,13 @@ GestordeTareas/
    ];
    ```
 
-4. **(Opcional) Migra datos antiguos en JSON**, si vienes de una versión previa del proyecto que usaba archivos JSON (`database/tareas.json`, `database/actividades.json`), ejecuta una sola vez:
-
-   ```bash
-   php scripts/migrar_json_a_mysql.php
-   ```
-
-   > Nota: los IDs se reasignan automáticamente (`AUTO_INCREMENT`); no se conservan los IDs originales del JSON.
-
-5. **Levanta el servidor** (Apache vía XAMPP) y abre en el navegador:
+4. **Levanta el servidor** (Apache vía XAMPP) y abre en el navegador:
 
    ```
    http://localhost/GestordeTareas/index.php
    ```
 
-6. **Regístrate** desde `index.php?accion=registro` e inicia sesión.
+5. **Regístrate** desde `index.php?accion=registro` e inicia sesión.
 
 ---
 
