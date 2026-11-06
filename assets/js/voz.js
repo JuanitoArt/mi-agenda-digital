@@ -222,7 +222,7 @@
         reconocimiento.start();
 
         // Si venimos de otra página y hace poco se activó el modo comando
-        // (dijiste la frase clave o diste un comando), seguimos ahí directo.
+        // se sigue ahí.
         if (haySesionComandoActiva()) {
             escuchandoComando = true;
             if (badge) badge.classList.add('voz-activo');

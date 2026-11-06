@@ -101,13 +101,15 @@ GestordeTareas/
 
 2. **Crea la base de datos:** abre phpMyAdmin (`http://localhost/phpmyadmin`), entra a la pestaña **SQL**, pega el contenido de `database/schema.sql` y ejecútalo. El script crea la base `gestor_tareas` y sus tablas.
 
-3. **Configura la conexión**, si tu entorno difiere del de XAMPP por defecto, edita `config/Database.php`:
+3. **Configura la conexión:** copia `config/database.example.php` como `config/database.local.php`. Si tu MySQL no usa `root` sin contraseña (lo normal en XAMPP), edita los datos en ese archivo:
 
    ```php
-   $host = 'localhost';
-   $dbname = 'gestor_tareas';
-   $usuario = 'root';
-   $password = '';
+   return [
+       'host' => 'localhost',
+       'dbname' => 'gestor_tareas',
+       'usuario' => 'root',
+       'password' => '',
+   ];
    ```
 
 4. **(Opcional) Migra datos antiguos en JSON**, si vienes de una versión previa del proyecto que usaba archivos JSON (`database/tareas.json`, `database/actividades.json`), ejecuta una sola vez:
