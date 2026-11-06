@@ -16,7 +16,7 @@ Cada usuario tiene su propia cuenta y solo puede ver, crear, editar y eliminar s
 -  **Búsqueda y filtros**: por texto, estado, prioridad y rango de fechas.
 -  **Asistente de voz**: permite crear tareas y actividades hablando, usando la Web Speech API del navegador (reconocimiento y síntesis de voz en español).
 -  **Diseño responsive**: barra de navegación inferior en móviles con botón flotante para crear tareas/actividades rápidamente.
--  **Migración de datos**: script incluido para migrar datos antiguos almacenados en JSON hacia MySQL.
+-  **Seguridad**: contraseñas con hash, protección CSRF, consultas preparadas con PDO y acciones que modifican datos solo por POST.
 
 ---
 
@@ -38,7 +38,7 @@ Cada usuario tiene su propia cuenta y solo puede ver, crear, editar y eliminar s
 ##  Estructura del proyecto
 
 ```
-GestordeTareas/
+mi-agenda-digital/
 ├── index.php                       # Router principal (?accion=...)
 ├── assets/
 │   ├── css/
@@ -81,22 +81,24 @@ GestordeTareas/
 └── README.md
 ```
 
-
-
-
+---
 
 ##  Requisitos
 
 - PHP **8.0 o superior** (se usan tipado de propiedades como `private PDO $db`)
 - MySQL / MariaDB
-- Servidor web (Apache recomendado, vía XAMPP) con soporte de `mod_rewrite` no es necesario, ya que se usa `?accion=`
+- Servidor web (Apache recomendado, vía XAMPP). No requiere `mod_rewrite`: el enrutamiento usa `?accion=`
 - Navegador Chrome o Edge si se desea usar el asistente de voz (requiere `SpeechRecognition`, no soportado en Firefox/Safari)
 
 ---
 
 ##  Instalación
 
-1. **Clona o copia el proyecto** dentro de tu carpeta de servidor (ej. `C:\xampp\htdocs\GestordeTareas`).
+1. **Clona o copia el proyecto** dentro de tu carpeta de servidor (ej. `C:\xampp\htdocs\mi-agenda-digital`):
+
+   ```bash
+   git clone https://github.com/JuanitoArt/mi-agenda-digital.git
+   ```
 
 2. **Crea la base de datos:** abre phpMyAdmin (`http://localhost/phpmyadmin`), entra a la pestaña **SQL**, pega el contenido de `database/schema.sql` y ejecútalo. El script crea la base `gestor_tareas` y sus tablas.
 
@@ -162,8 +164,8 @@ El proyecto incluye un asistente controlado por voz (`assets/js/voz.js`), visibl
 
 ##  Autor
 
-Juan Andres Galvis Bejarano / JuanitoArt
+Juan Andrés Galvis Bejarano · [JuanitoArt](https://github.com/JuanitoArt)
 
-##  Licencia
+## Licencia
 
-_Agrega aquí la licencia del proyecto (MIT, GPL, etc.) o elimina esta sección si no aplica._
+Distribuido bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
