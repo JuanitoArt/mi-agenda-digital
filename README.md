@@ -99,7 +99,7 @@ GestordeTareas/
 
 1. **Clona o copia el proyecto** dentro de tu carpeta de servidor (ej. `C:\xampp\htdocs\GestordeTareas`).
 
-2. **Crea la base de datos** `gestor_tareas` en MySQL/phpMyAdmin y ejecuta el script `database/schema.sql` con las tablas necesarias (ver sección [Base de datos](#-base-de-datos)).
+2. **Crea la base de datos:** abre phpMyAdmin (`http://localhost/phpmyadmin`), entra a la pestaña **SQL**, pega el contenido de `database/schema.sql` y ejecútalo. El script crea la base `gestor_tareas` y sus tablas.
 
 3. **Configura la conexión**, si tu entorno difiere del de XAMPP por defecto, edita `config/Database.php`:
 
@@ -125,47 +125,6 @@ GestordeTareas/
    ```
 
 6. **Regístrate** desde `index.php?accion=registro` e inicia sesión.
-
----
-
-##  Base de datos
-
-Tablas inferidas a partir de las consultas SQL del proyecto (ajusta tipos/longitudes según tus necesidades):
-
-```sql
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
-    correo VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE tareas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(150) NOT NULL,
-    descripcion TEXT,
-    prioridad ENUM('Baja', 'Media', 'Alta') NOT NULL,
-    fecha_limite DATE NOT NULL,
-    estado ENUM('Pendiente', 'En progreso', 'Completada', 'Cancelada') DEFAULT 'Pendiente',
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-);
-
-CREATE TABLE actividades (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(150) NOT NULL,
-    descripcion TEXT,
-    fecha DATE NOT NULL,
-    hora_inicio TIME NOT NULL,
-    hora_fin TIME NOT NULL,
-    lugar VARCHAR(150),
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-);
-```
-
->  Este esquema fue reconstruido a partir del código (`Actividad.php`, `Tarea.php`, `Usuario.php`), no de un `schema.sql` real. Verifica que coincida con tu base de datos actual y reemplaza este bloque por tu script real si ya lo tienes.
 
 ---
 
@@ -210,7 +169,7 @@ El proyecto incluye un asistente controlado por voz (`assets/js/voz.js`), visibl
 
 ##  Autor
 
-Juan Andres Galvis Bejaano / JuanitoArt
+Juan Andres Galvis Bejarano / JuanitoArt
 
 ##  Licencia
 
